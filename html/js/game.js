@@ -315,6 +315,8 @@ var Game = (function() {
 
         Vision.detectFace(gcsPath, function(result) {
             var emotion = getVisionEmotion(result);
+            console.log("emotion.label...");
+console.log(emotion);
 
             console.log("Emotion Found: ", emotion);
             document.querySelector("#my-image-emotion h3").innerText = emotion.label + " (" + emotion.likelihood + ")";
