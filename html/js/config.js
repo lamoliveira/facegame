@@ -33,7 +33,7 @@ Config = function() {
         // Replace with an API key for Google Cloud Vision API
         // DO NOT DO THIS IN PRODUCTION!!! For Demo purposes only.
         visionAPI: {
-            key: "520015397491-0dhsjfsfcvldaoad7m7c4mb4f2nd1g6l.apps.googleusercontent.com"
+            key: "AIzaSyBSHPT5Ec9qPtb0bpk4H6tu82r3Cv0h_lc"
         }
     }
 }();
