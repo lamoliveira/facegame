@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-"use strict";
+//"use strict";
 
 /**
  * Module for interacting with the Cloud Vision API
