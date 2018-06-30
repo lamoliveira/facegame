@@ -122,7 +122,7 @@ var Game = (function() {
                 userbutton = document.querySelector(".button-choice");
                 console.log("userbutton");
                 console.log(userbutton);
-                console.log(userChoice(userbutton.attr("data-value")));
+                console.log(userbutton.attr("data-value"));
                 console.log(user);
                 userbutton.addEventListener("click", userChoice(userbutton.attr("data-value"),user));
     
