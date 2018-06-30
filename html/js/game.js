@@ -122,7 +122,7 @@ var Game = (function() {
                 game.state = STATE.JOINED;
                 userbutton = document.querySelector(".button-choice");
                 console.log("userbutton");
-                console.log(userbutton);
+                
                 
                 console.log(user);
                 userbutton.addEventListener("click", userChoice(userbutton,user));
