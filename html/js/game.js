@@ -65,16 +65,16 @@ var Game = (function() {
         gameList.appendChild(item);
     }
     function userChoice(key, game) {
-        var userbutton = this;
+        var userbutton = key;
 
         console.log(document.querySelector("but1"));
         var userchoiceview = document.querySelector("#user-choices");
-
+        console.log(userbutton);
         var item = document.createElement("p");
         console.log("user choice");
         console.log(key);
         item.id = key;
-        item.innerHTML = 'user ' + game.creator.displayName + ' choose ' + $(userbutton).attr("value");
+        item.innerHTML = 'user ' + game.creator.displayName + ' choose ' ;//$(userbutton).attr("value");
         
         userchoiceview.appendChild(item);
     }
