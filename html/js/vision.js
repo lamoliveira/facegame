@@ -41,9 +41,10 @@ var Vision = (function() {
          * */
         detectFace: function(gcsPath, successCallback) {
             console.log("Sending face request for image", gcsPath);
+            console.log(Config.visionAPI.key);
 
             var url = "https://vision.googleapis.com/v1/images:annotate?key=" + Config.visionAPI.key;
-
+console.log(url);
             var request = new XMLHttpRequest();
             request.open("POST", url);
             request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
