@@ -73,7 +73,7 @@ var Game = (function() {
         console.log("user choice");
         console.log(key);
         item.id = key;
-        item.innerHTML = 'user ' + game.creator.displayName + ' choose ' + userbutton.attr("value");
+        item.innerHTML = 'user ' + game.creator.displayName + ' choose ' + $(userbutton).attr("value");
         
         userchoiceview.appendChild(item);
     }
@@ -122,9 +122,9 @@ var Game = (function() {
                 userbutton = document.querySelector(".button-choice");
                 console.log("userbutton");
                 console.log(userbutton);
-                console.log(userbutton.attr("data-value"));
+                console.log($(userbutton).attr("data-value"));
                 console.log(user);
-                userbutton.addEventListener("click", userChoice(userbutton.attr("data-value"),user));
+                userbutton.addEventListener("click", userChoice($(userbutton).attr("data-value"),user));
     
                 game.joiner = {
                     uid: user.uid,
