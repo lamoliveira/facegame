@@ -64,7 +64,7 @@ var Game = (function() {
         gameList.appendChild(item);
     }
     function userChoice(key, game) {
-        var userbutton = document.querySelector("but1").val();
+        var userbutton = this;
 
         console.log(document.querySelector("but1"));
         var userchoiceview = document.querySelector("#user-choices");
