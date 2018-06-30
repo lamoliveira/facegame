@@ -25,38 +25,19 @@ var Vision = (function() {
     /*
      * Build the object structure for a Vision API request and return it.
      * */
-    function buildVisionRequest(gcsPath) {
-        return {
-            requests: [{
-                image: {source: {gcsImageUri: gcsPath}},
-                features: [{type: "FACE_DETECTION", maxResults: 1}]
-            }]
-        };
-    }
-
+  
     // Exposed functions
     return {
         /*
-         * Detect a face in an image stored in a gcsBucket
+         * return user choice
          * */
         detectFace: function(gcsPath, successCallback) {
-            console.log("Sending face request for image", gcsPath);
-            console.log(Config.visionAPI.key);
-
-            var url = "https://vision.googleapis.com/v1/images:annotate?key=" + Config.visionAPI.key;
-console.log(url);
-            var request = new XMLHttpRequest();
-            request.open("POST", url);
-            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            request.send(JSON.stringify(buildVisionRequest(gcsPath)));
-            request.onreadystatechange = function() {
-                if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                    var result = JSON.parse(request.responseText);
+            console.log("Asking number of coins", gcsPath);
+            
+                    var result = "3";
                     successCallback(result);
-                } else if (request.status != 200) {
-                    console.log("Vision API Error:", request.status, request.responseText);
-                }
+                
             }
         }
     }
-})();
+);

@@ -36,6 +36,8 @@ var UI = (function() {
             var messages = document.querySelector("#chat-messages");
             var chatHeader = document.querySelector("#chat-header");
             var input = document.querySelector("#chat-input");
+            var userchoices = document.querySelector("#user-choices");
+            
 
             messages.style.height = (chat.clientHeight - (chatHeader.clientHeight + input.clientHeight)) + "px";
 

@@ -25,9 +25,10 @@ var Game = (function() {
     //set of states a game can be in.
     var STATE = {OPEN: 1, JOINED: 2, TAKE_PICTURE: 3, UPLOADED_PICTURE: 4, FACE_DETECTED: 5, COMPLETE: 6};
     var EMOTIONS = {
-        HAPPY: {label: "Happy", visionKey: "joyLikelihood"},
-        SURPRISED: {label: "Surprised", visionKey: "surpriseLikelihood"},
-        ANGRY: {label: "Angry", visionKey: "angerLikelihood"}
+        0: {label: "Lona", visionKey: "joyLikelihood"},
+        1: {label: "One", visionKey: "surpriseLikelihood"},
+        2: {label: "Two", visionKey: "angerLikelihood"},
+        3: {label: "Three", visionKey: "angerLikelihood"}
     };
     var EMOTION_SCALE = ["UNLIKELY", "VERY_LIKELY", "LIKELY", "POSSIBLE"];
     var UNKNOWN_EMOTION = {label: "Unknown", likelihood: "???"};
@@ -37,6 +38,7 @@ var Game = (function() {
     var gameList;
     var cam;
     var dialog;
+    var userbutton;
 
     /*
      * Enable the ability (via the UI) for the currently logged in player
@@ -61,7 +63,20 @@ var Game = (function() {
 
         gameList.appendChild(item);
     }
+    function userChoice(key, game) {
+        var userbutton = document.querySelector("but1").val();
 
+        console.log(document.querySelector("but1"));
+        var userchoiceview = document.querySelector("#user-choices");
+
+        var item = document.createElement("p");
+        console.log("user choice");
+        console.log(key);
+        item.id = key;
+        item.innerHTML = 'user ' + game.creator.displayName + ' choose ' + userbutton.attr("value");
+        
+        userchoiceview.appendChild(item);
+    }
     /*
      * Create a game in Firebase
      * */
@@ -104,6 +119,11 @@ var Game = (function() {
             //only join if someone else hasn't
             if (!game.joiner) {
                 game.state = STATE.JOINED;
+                userbutton = document.querySelector(".button-choice");
+                console.log("userbutton");
+                console.log(userbutton);
+                userbutton.addEventListener("click", userChoice(userbutton,user));
+    
                 game.joiner = {
                     uid: user.uid,
                     displayName: user.displayName
@@ -209,11 +229,11 @@ var Game = (function() {
         var title = dialog.querySelector(".mdl-dialog__title");
         dialog.showModal();
         window.setTimeout(function() {
-            title.innerText = 5;
+            title.innerText = 2;
 
             //for debugging purposes
             if (window.location.search == "?debug") {
-                title.innerText = 10;
+                title.innerText = 4;
             }
 
             //title.innerText = Math.floor(Math.random() * (10 - 3)) + 3;
@@ -255,6 +275,7 @@ var Game = (function() {
      * Either, Happy, Surprised, Angry or Unknown.
      *
      * */
+    /*
     function getVisionEmotion(visionResult) {
         if (!visionResult.responses || visionResult.responses.length != 1 || visionResult.responses[0].error) {
             console.log("Error in vision result:", visionResult);
@@ -280,7 +301,7 @@ var Game = (function() {
 
         return UNKNOWN_EMOTION
     }
-
+*/
     /*
     * Add the current player's emotion data to the current game
     * and save it in Firebase.
@@ -302,6 +323,7 @@ var Game = (function() {
      * Run this to detect what emotion is being shown on the face
      * in the picture, and add it to the game.
      * */
+    /*
     function detectMyFacialEmotion(gameRef, game) {
         var gcsPath = game.creator.gcsPath;
         if (game.joiner.uid == firebase.auth().currentUser.uid) {
@@ -317,6 +339,28 @@ var Game = (function() {
             var emotion = getVisionEmotion(result);
             console.log("emotion.label...");
 console.log(emotion);
+
+            console.log("Emotion Found: ", emotion);
+            document.querySelector("#my-image-emotion h3").innerText = emotion.label + " (" + emotion.likelihood + ")";
+            addEmotionToGame(gameRef, game, emotion)
+        });
+    }
+*/
+    function detectMyChoice(gameRef, game) {
+        var gcsPath = game.creator.gcsPath;
+        if (game.joiner.uid == firebase.auth().currentUser.uid) {
+            gcsPath = game.joiner.gcsPath;
+        }
+
+        //may not be my path, so quit out early, as I may not have a value.
+        if (!gcsPath) {
+            return
+        }
+
+        Vision.detectFace(gcsPath, function(result) {
+            var emotion = getVisionEmotion(result);
+            console.log("emotion.label...");
+            console.log(emotion);
 
             console.log("Emotion Found: ", emotion);
             document.querySelector("#my-image-emotion h3").innerText = emotion.label + " (" + emotion.likelihood + ")";
