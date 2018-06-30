@@ -39,6 +39,7 @@ var Game = (function() {
     var cam;
     var dialog;
     var userbutton = document.querySelector(".button-choice");
+    console.log(userbutton);
 
     /*
      * Enable the ability (via the UI) for the currently logged in player
@@ -122,9 +123,9 @@ var Game = (function() {
                 userbutton = document.querySelector(".button-choice");
                 console.log("userbutton");
                 console.log(userbutton);
-                console.log($(userbutton).attr("data-value"));
+                
                 console.log(user);
-                userbutton.addEventListener("click", userChoice($(userbutton).attr("data-value"),user));
+                userbutton.addEventListener("click", userChoice(userbutton,user));
     
                 game.joiner = {
                     uid: user.uid,
