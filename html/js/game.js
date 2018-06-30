@@ -122,7 +122,9 @@ var Game = (function() {
                 userbutton = document.querySelector(".button-choice");
                 console.log("userbutton");
                 console.log(userbutton);
-                userbutton.addEventListener("click", userChoice(userbutton,user));
+                console.log(userChoice(userbutton.attr("data-value")));
+                console.log(user);
+                userbutton.addEventListener("click", userChoice(userbutton.attr("data-value"),user));
     
                 game.joiner = {
                     uid: user.uid,
