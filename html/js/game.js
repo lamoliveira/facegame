@@ -38,7 +38,7 @@ var Game = (function() {
     var gameList;
     var cam;
     var dialog;
-    var userbutton;
+    var userbutton = document.querySelector(".button-choice");
 
     /*
      * Enable the ability (via the UI) for the currently logged in player
